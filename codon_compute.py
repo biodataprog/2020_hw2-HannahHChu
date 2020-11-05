@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
 import os, gzip, itertools
+import fastaparser as fp
+import array as arr
+from Bio.SeqUtils import GC
+from Bio import  SeqIO
 
 # this is code which will parse FASTA files
 # define what a header looks like in FASTA format
