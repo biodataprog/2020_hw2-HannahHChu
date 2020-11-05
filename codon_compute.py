@@ -36,7 +36,6 @@ if not os.path.exists(file2):
 with gzip.open(file1,"rt") as fasta_file:
     parser = fp.Reader(fasta_file)
     gene_num = 1
-    codons = {}
     for seq in parser:
         genes1 = (str(seq.id)).count('L')
         gene_num += genes1
