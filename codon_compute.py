@@ -29,10 +29,43 @@ if not os.path.exists(file1):
 if not os.path.exists(file2):
     os.system("curl -O %s"%(url2))
 
-with gzip.open(file1,"rt") as fh:
-    seqs = aspairs(fh)
+with gzip.open(file1,"rt") as fasta_file:
+    parser = fp.Reader(fasta_file)
+    gene_num = 1
+    codons = {}
+    for seq in parser:
+        genes1 = (str(seq.id)).count('L')
+        gene_num += genes1
+    print("The total number of genes in species 1, Salmonella, is", gene_num)
 
-    for seq in seqs:
-        seqname  = seq[0]
-        seqstring= seq[1]
-        print(seqname, " first 10 bases are ", seqstring[0:10])
+with gzip.open(file1,"rt") as f:
+    seqs = dict(aspairs(f))
+    genesum1=0
+    for gl in seqs.values():
+        tgl = len(gl)
+        genesum1 += tgl
+    for x in seqs.values():
+        gc1 = GC(x)
+    print("The total length of gene sequence for species 1, Salmonella, is {} bp ({} kb)".format(genesum1, genesum1/1000), ".")
+    print ("The GC content of species 1, Salmonella, is {} %" .format(gc1))
+
+    
+with gzip.open(file2,"rt") as fasta_file:
+    parser = fp.Reader(fasta_file)
+    gene_num2 = 0
+    for seq in parser:
+        genes2 = (str(seq.id)).count('P')
+        gene_num2 += genes2
+    print("The total number of genes in species 2, Mycobacterium, is", gene_num2)
+       
+with gzip.open(file2,"rt") as f:
+    seqs = dict(aspairs(f))
+    genesum2=0
+    for gl in seqs.values():
+        tgl2 = len(gl)
+        genesum2 += tgl2
+    for x in seqs.values():
+        gc2 = GC(x)
+    print("The total length of gene sequence for species 2, Mycobacterium, is {} bp ({} kb)".format(genesum2, genesum2/1000), ".")
+    print ("The GC content of species 2, Mycobacterium, is {} %" .format(gc2))
+
