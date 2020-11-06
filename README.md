@@ -49,7 +49,9 @@ The code you write will need to process these files in order to print out the fo
 2. Total length of these gene sequences for each file
 3. The G+C percentage for the whole dataset (eg the frequency of G + the frequency of C)
 
-### Still working out these ---
+### Still working out these --- (11/5)
 
 3. Total number codons in each genome.
 4. Print out table with three columns: Codon, Frequency in Sp1, Frequency in Sp2
+
+## Figured it out! (11/6) :)
